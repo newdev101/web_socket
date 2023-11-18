@@ -25,16 +25,34 @@ const expressServer = app.listen(PORT, ()=>{
 const io = new Server(expressServer,{
      //cros origin resource sharing
      cors:{
-          origin: process.env.NODE_ENV === "production" ? flase : ["htttp://localhost:5500",'http://127.0.0.1:5500']
+          origin: process.env.NODE_ENV === "production" ? false : ["http://localhost:5500",'http://127.0.0.1:5500']
      }
 });
 
 io.on('connection',socket=>{
      console.log(`user${socket.id} connected`);
+
+     //upon connection to new user
+     socket.emit('message',"🙋️ welcome to chat‼️");
+
+     //upon connection to all others
+     socket.broadcast.emit('message',`🆕️ new ${socket.id.substring(0,5)} connected`)
+
+     //listening to messages
      socket.on('message',data=>{
-         
-          console.log(data);
+          console.log(`${socket.id.substring(0,5)} : ${data}`);
           io.emit('message',`${socket.id.substring(0,5)} : ${data}`);
      });
+
+     //when user disconnects to all other users
+     socket.on('disconnect',()=>{
+     socket.broadcast.emit('message',`🤦‍♀️️ ${socket.id.substring(0,5)} disconnected`)
+     })
+
+
+     //listen for activity
+     socket.on('activity',(name)=>{
+     socket.broadcast.emit('activity',name)
+     })
 });
 
