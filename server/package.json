@@ -1,15 +1,20 @@
 {
-  "name": "ws-1",
+  "name": "ws-2",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node ."
+    "start": "node .",
+    "dev": "nodemon ."
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "socket.io": "^4.7.2",
     "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
