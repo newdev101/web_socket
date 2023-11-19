@@ -13,15 +13,26 @@
      <script defer src="app.js"></script>
 </head>
 <body>
-     <form >
-          <input type="text" placeholder="your text">
-          <button>send</button>
-     </form>
-     <ul>
+     <main>
+          <form  class="form-join">
+               <input type="text" id="name" placeholder="your name" required maxlength="8" size="5">
+               <input type="text" id="room" placeholder="chat room" required maxlength="8" size="5">
+               <button type="submit" id="join">Join</button>
+          </form>
+     </main>
 
-     </ul>
+     <ul class="chat-display"> </ul>
 
+     <p class="user-list"></p>
+
+     <p class="room-list"></p>
 
      <p class="activity"></p>
+
+     <form class="form-msg" >
+          <input type="text" id="message" placeholder="your text">
+          <button type="submit">send</button>
+     </form>
+
 </body>
 </html>
